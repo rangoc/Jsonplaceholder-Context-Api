@@ -11,7 +11,7 @@ const Post = ({ post }) => {
     <div>
       <h5>User Name</h5>
       <p>{post.body}</p>
-      <CommentsList />
+      {/* <CommentsList /> */}
     </div>
   );
 };
