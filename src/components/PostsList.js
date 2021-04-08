@@ -3,16 +3,16 @@ import Post from './Post';
 import { Context } from 'context/PostsContext';
 const PostsList = () => {
   const {
-    data: { posts, users },
+    data: { posts },
+    isLoading,
   } = useContext(Context);
   return (
     <div>
       <ul className="list-group">
-        {posts &&
-          users &&
+        {!isLoading &&
           posts.map((post, index) => (
             <li key={index} className="list-group-item">
-              <Post key={index} post={post} users={users} />
+              <Post key={index} post={post} />
             </li>
           ))}
       </ul>

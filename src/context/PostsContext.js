@@ -3,31 +3,36 @@ import React, { useState, createContext } from 'react';
 export const Context = createContext();
 
 export const PostsStore = ({ children }) => {
-  // const [posts, setPosts] = useState([]);
-  // const [users, setUsers] = useState([]);
-  // const fetchPosts = async () => {
-  //   const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-  //   const data = await response.json();
-  //   setPosts(data);
-  // };
-  // const fetchUsers = async () => {
-  //   const response = await fetch('https://jsonplaceholder.typicode.com/users');
-  //   const data = await response.json();
-  //   setUsers(data);
-  // };
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const fetchData = async () => {
     const postsResponse = await fetch(
       'https://jsonplaceholder.typicode.com/posts'
     );
     const posts = await postsResponse.json();
+
     const usersResponse = await fetch(
       'https://jsonplaceholder.typicode.com/users'
     );
     const users = await usersResponse.json();
-    setData({ posts, users });
+
+    const commentsResponse = await fetch(
+      `https://jsonplaceholder.typicode.com/comments`
+    );
+    const comments = await commentsResponse.json();
+
+    setData({ posts, users, comments });
+    setIsLoading(false);
   };
   return (
-    <Context.Provider value={{ data, fetchData }}>{children}</Context.Provider>
+    <Context.Provider
+      value={{
+        data,
+        isLoading,
+        fetchData,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 };
