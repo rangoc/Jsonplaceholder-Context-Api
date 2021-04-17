@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 
 import App from 'components/App';
 import { BrowserRouter as Router } from 'react-router-dom';
+// Context
+import PostsContextProvider from 'context/PostsContext';
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <PostsContextProvider>
+    <Router>
+      <App />
+    </Router>
+  </PostsContextProvider>,
   document.querySelector('#root')
 );

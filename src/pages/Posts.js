@@ -1,9 +1,10 @@
 import React from 'react';
-
+// Components
+import PostsList from 'components/PostsList';
 const Posts = () => {
   return (
     <div>
-      <p>Hello from Posts</p>
+      <PostsList />
     </div>
   );
 };

@@ -12,7 +12,6 @@ const App = () => {
   return (
     <StyledApp>
       <GlobalStyle />
-      <h1>Test App</h1>
       <Switch>
         <Route exact path="/" component={Nav} />
         <Route exact path="/posts" component={Posts} />
@@ -28,5 +27,6 @@ const StyledApp = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 5rem;
 `;
 export default App;
