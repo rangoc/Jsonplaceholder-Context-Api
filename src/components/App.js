@@ -28,5 +28,8 @@ const StyledApp = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 5rem;
+  @media screen and (max-width: 600px) {
+    padding: 0;
+  }
 `;
 export default App;

@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CommentsList from 'components/CommentsList';
 const Post = ({ post, users }) => {
-  const { title, body, userId, id } = post;
+  const [showComments, setShowComments] = useState(false);
 
+  const { title, body, userId, id } = post;
   const author = users.filter((user) => user.id === userId);
   const name = author[0].name;
-
-  const [showComments, setShowComments] = useState(false);
 
   const showCommentsHandler = () => {
     setShowComments(!showComments);
