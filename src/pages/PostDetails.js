@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Post = () => {
+const PostDetails = () => {
   return (
     <div>
       <p>Hello from Single Post</p>
@@ -8,4 +8,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default PostDetails;

@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import CommentsList from 'components/CommentsList';
 const Post = ({ post, users }) => {
-  const { title, body, userId } = post;
+  const { title, body, userId, id } = post;
+
   const author = users.filter((user) => user.id === userId);
   const name = author[0].name;
+
+  const [showComments, setShowComments] = useState(false);
+
+  const showCommentsHandler = () => {
+    setShowComments(!showComments);
+  };
   return (
     <StyledPost>
       <h2>{name}</h2>
       <h3>{title}</h3>
       <p>{body}</p>
-      <button>See All Comments</button>
+      <button onClick={showCommentsHandler}>
+        {showComments ? 'Close comments' : 'Show comments'}
+      </button>
+      {showComments ? <CommentsList postId={id} /> : ''}
       <div className="line" />
     </StyledPost>
   );
