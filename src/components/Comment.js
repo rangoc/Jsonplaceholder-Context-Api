@@ -1,12 +1,17 @@
 import React from 'react';
-
+import styled from 'styled-components';
 const Comment = ({ comment }) => {
   return (
-    <div>
+    <StyledComment>
       <p>{comment.email}</p>
       <p>{comment.body}</p>
-    </div>
+    </StyledComment>
   );
 };
-
+const StyledComment = styled.div`
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 2rem;
+`;
 export default Comment;
