@@ -7,7 +7,6 @@ import Posts from 'pages/Posts';
 import PostDetails from 'pages/PostDetails';
 import Nav from 'components/Nav';
 import GlobalStyle from 'components/GlobalStyle';
-
 const App = () => {
   return (
     <StyledApp>

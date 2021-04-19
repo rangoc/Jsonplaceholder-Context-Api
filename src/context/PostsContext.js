@@ -11,6 +11,7 @@ const PostsContextProvider = ({ children }) => {
     isSearchActive: false,
     searchInput: '',
     filteredPosts: null,
+    selectedPost: null,
   });
 
   return (
@@ -27,22 +28,25 @@ export const useFetchPosts = () => {
   }, []);
   const fetchPosts = async () => {
     setState((prev) => {
-      if (prev.data) {
+      if (prev.posts) {
         return { ...prev, isUpdating: true }; // updating
       }
       return { ...prev, isLoading: true }; // fetching for a first time
     });
     try {
+      // fetching posts
       const postsResponse = await fetch(
         'https://jsonplaceholder.typicode.com/posts'
       );
       const posts = await postsResponse.json();
+      // fetching users
       const usersResponse = await fetch(
         'https://jsonplaceholder.typicode.com/users'
       );
       const users = await usersResponse.json();
 
-      const makeNewArray = () => {
+      // making new data structure which ties user's name with a post
+      const makeNewPosts = () => {
         const postsAndUsers = [];
         const newPosts = posts.map((post) => {
           const author = users.filter((user) => user.id === post.userId);
@@ -52,23 +56,71 @@ export const useFetchPosts = () => {
         return newPosts[newPosts.length - 1];
       };
       setState({
+        ...state,
         isLoading: false,
         isUpdating: false,
         error: null,
-        posts: makeNewArray(),
-        isSearchActive: false,
-        searchInput: '',
-        filteredPosts: null,
+        posts: makeNewPosts(),
       });
     } catch (e) {
       setState({
+        ...state,
         isLoading: false,
         isUpdating: false,
         error: e,
         posts: null,
-        isSearchActive: false,
-        searchInput: '',
-        filteredPosts: null,
+      });
+    }
+  };
+  return state;
+};
+
+export const useFetchPost = (postId) => {
+  const { state, setState } = useContext(PostsContext);
+  useEffect(() => {
+    fetchPost(postId);
+  }, []);
+  const fetchPost = async (postId) => {
+    setState((prev) => {
+      if (prev.selectedPost) {
+        return { ...prev, isUpdating: true }; // updating
+      }
+      return { ...prev, isLoading: true }; // fetching for a first time
+    });
+    try {
+      // fetching single post
+      const postResponse = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${postId}`
+      );
+      const post = await postResponse.json();
+      console.log(`post: ${post}`);
+      // getting the userId from the post and fetching that user
+      const userId = post.userId;
+      console.log(`userId: ${userId}`);
+      const userResponse = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${userId}`
+      );
+      const user = await userResponse.json();
+      console.log(`user: ${user}`);
+
+      const makeNewPost = () => {
+        const postAndUser = { author: user.name, ...post };
+        return postAndUser;
+      };
+      setState({
+        ...state,
+        isLoading: false,
+        isUpdating: false,
+        error: null,
+        selectedPost: makeNewPost(),
+      });
+    } catch (e) {
+      setState({
+        ...state,
+        isLoading: false,
+        isUpdating: false,
+        error: e,
+        selectedPost: null,
       });
     }
   };

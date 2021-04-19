@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import Post from 'components/Post';
 import Loader from 'components/Loader';
 import { useFetchPosts, PostsContext } from 'context/PostsContext';
-import CommentsContextProvider from 'context/CommentsContext';
 import styled from 'styled-components';
 const PostsList = () => {
   const { isLoading, posts } = useFetchPosts();
@@ -15,11 +14,7 @@ const PostsList = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        data.map((post) => (
-          <CommentsContextProvider key={post.id}>
-            <Post post={post} />
-          </CommentsContextProvider>
-        ))
+        data.map((post) => <Post key={post.id} post={post} />)
       )}
     </StyledPostsList>
   );

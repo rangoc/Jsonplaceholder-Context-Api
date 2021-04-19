@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import CommentsList from 'components/CommentsList';
 
@@ -10,13 +11,15 @@ const Post = ({ post }) => {
   };
   return (
     <StyledPost>
-      <h2>{post.author}</h2>
-      <h3>{post.title}</h3>
-      <p>{post.body}</p>
+      <Link to={`/post/${post?.id}`}>
+        <h2>{post?.author}</h2>
+        <h3>{post?.title}</h3>
+        <p>{post?.body}</p>
+      </Link>
       <button onClick={showCommentsHandler}>
         {showComments ? 'Close comments' : 'Show comments'}
       </button>
-      {showComments ? <CommentsList postId={post.id} /> : ''}
+      {showComments ? <CommentsList postId={post?.id} /> : ''}
       <div className="line" />
     </StyledPost>
   );
@@ -37,6 +40,7 @@ const StyledPost = styled.div`
     border-radius: 5px;
     border: 1px solid black;
     margin-bottom: 2rem;
+    cursor: pointer;
     transition: background 0.5s ease;
     &:hover {
       background: black;
