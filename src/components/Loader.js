@@ -7,13 +7,11 @@ const Loader = () => {
 
 const StyledLoader = styled.img`
   margin: 0 0 2em;
-  height: 300px;
-  width: 100%;
+  height: 100px;
   text-align: center;
   padding: 1em;
   margin: 0 auto 1em;
   display: inline-block;
   vertical-align: center;
-  color: lightgreen;
 `;
 export default Loader;

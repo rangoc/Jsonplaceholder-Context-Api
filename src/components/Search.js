@@ -43,13 +43,16 @@ const Search = () => {
 };
 const StyledSearch = styled.div`
   input {
-    width: 320px;
+    width: 310px;
     border-radius: 2rem;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     outline: none;
     border: none;
-    margin-bottom: 2rem;
+    margin-left: 2rem;
     padding: 1rem 2rem;
+  }
+  @media screen and (max-width: 600px) {
+    margin-top: 1rem;
   }
 `;
 export default Search;
