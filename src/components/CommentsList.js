@@ -5,16 +5,16 @@ import Comment from 'components/Comment';
 const CommentsList = ({ postId }) => {
   const { isLoading, comments } = useFetchComments(postId);
   return (
-    <Comments>
+    <StyledCommentsList>
       {isLoading
         ? 'Loading comments...'
         : comments.map((comment) => (
             <Comment key={comment.id} comment={comment} />
           ))}
-    </Comments>
+    </StyledCommentsList>
   );
 };
-const Comments = styled.div`
+const StyledCommentsList = styled.div`
   padding: 2rem 3rem;
 `;
 export default CommentsList;

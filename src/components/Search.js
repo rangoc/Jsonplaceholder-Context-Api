@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-
+import { PostsContext } from 'context/PostsContext';
 const Search = () => {
+  const { state } = useContext(PostsContext);
+  console.log(state);
+
+  const searchHandler = (e) => {
+    console.log(e.target.value);
+  };
   return (
     <StyledSearch>
-      <input type="text" placeholder="Search posts..." />
+      <input
+        type="text"
+        placeholder="Search posts..."
+        onChange={searchHandler}
+      />
     </StyledSearch>
   );
 };

@@ -9,6 +9,9 @@ const PostsContextProvider = ({ children }) => {
     users: null,
     error: null,
     isUpdating: false,
+    isSearchActive: false,
+    filteredPosts: null,
+    postsWithUsers: [],
   });
 
   return (
@@ -45,6 +48,9 @@ export const useFetchPosts = () => {
         error: null,
         posts,
         users,
+        isSearchActive: false,
+        filteredPosts: null,
+        postsWithUsers: [],
       });
     } catch (e) {
       setState({
@@ -53,6 +59,9 @@ export const useFetchPosts = () => {
         error: e,
         posts: null,
         users: null,
+        isSearchActive: false,
+        filteredPosts: null,
+        postsWithUsers: [],
       });
     }
   };

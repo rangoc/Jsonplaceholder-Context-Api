@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import CommentsList from 'components/CommentsList';
+import { PostsContext } from 'context/PostsContext';
 const Post = ({ post, users }) => {
   const [showComments, setShowComments] = useState(false);
+  const { state, setState } = useContext(PostsContext);
+  useEffect(() => {
+    const postsWithUsers = state.postsWithUsers;
+    postsWithUsers.push({ author: getAuthorName(), post: post });
+    setState({
+      ...state,
+      postsWithUsers,
+    });
+  }, []);
 
-  const { title, body, userId, id } = post;
-  const author = users.filter((user) => user.id === userId);
-  const name = author[0].name;
+  const getAuthorName = () => {
+    const author = users.filter((user) => user.id === post.userId);
+    return author[0].name;
+  };
 
   const showCommentsHandler = () => {
     setShowComments(!showComments);
   };
   return (
     <StyledPost>
-      <h2>{name}</h2>
-      <h3>{title}</h3>
-      <p>{body}</p>
+      <h2>{getAuthorName()}</h2>
+      <h3>{post.title}</h3>
+      <p>{post.body}</p>
       <button onClick={showCommentsHandler}>
         {showComments ? 'Close comments' : 'Show comments'}
       </button>
-      {showComments ? <CommentsList postId={id} /> : ''}
+      {showComments ? <CommentsList postId={post.id} /> : ''}
       <div className="line" />
     </StyledPost>
   );
