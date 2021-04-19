@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Post from 'components/Post';
-import { useFetchPosts } from 'context/PostsContext';
+import { useFetchPosts, PostsContext } from 'context/PostsContext';
 import CommentsContextProvider from 'context/CommentsContext';
 import styled from 'styled-components';
 const PostsList = () => {
   const { isLoading, posts, users } = useFetchPosts();
+  const { state } = useContext(PostsContext);
+
   return (
     <StyledPostsList>
       {isLoading

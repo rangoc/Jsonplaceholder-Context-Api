@@ -5,17 +5,31 @@ const Search = () => {
   const { state, setState } = useContext(PostsContext);
   console.log(state);
   const searchHandler = (e) => {
-    console.log(e.target.value);
     const filteredPosts = state.postsWithUsers.filter(
       (p) =>
         p.author.toLowerCase().includes(e.target.value.toLowerCase()) === true
     );
-    setState({ ...state, filteredPosts });
+    if (e.target.value) {
+      setState({
+        ...state,
+        isSearchActive: true,
+        searchInput: e.target.value,
+        filteredPosts,
+      });
+    } else {
+      setState({
+        ...state,
+        isSearchActive: false,
+        searchInput: e.target.value,
+        filteredPosts,
+      });
+    }
   };
   return (
     <StyledSearch>
       <input
         type="text"
+        value={state.searchInput}
         placeholder="Search posts..."
         onChange={searchHandler}
       />

@@ -10,6 +10,7 @@ const PostsContextProvider = ({ children }) => {
     error: null,
     isUpdating: false,
     isSearchActive: false,
+    searchInput: '',
     filteredPosts: null,
     postsWithUsers: [],
   });
@@ -49,6 +50,7 @@ export const useFetchPosts = () => {
         posts,
         users,
         isSearchActive: false,
+        searchInput: '',
         filteredPosts: null,
         postsWithUsers: [],
       });
@@ -60,6 +62,7 @@ export const useFetchPosts = () => {
         posts: null,
         users: null,
         isSearchActive: false,
+        searchInput: '',
         filteredPosts: null,
         postsWithUsers: [],
       });
