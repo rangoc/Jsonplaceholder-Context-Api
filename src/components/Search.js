@@ -25,14 +25,20 @@ const Search = () => {
     }
   };
   return (
-    <StyledSearch>
-      <input
-        type="text"
-        value={state.searchInput}
-        placeholder="Search posts..."
-        onChange={searchHandler}
-      />
-    </StyledSearch>
+    <>
+      {state.isLoading ? (
+        ''
+      ) : (
+        <StyledSearch>
+          <input
+            type="text"
+            value={state.searchInput}
+            placeholder="Search posts..."
+            onChange={searchHandler}
+          />
+        </StyledSearch>
+      )}
+    </>
   );
 };
 const StyledSearch = styled.div`

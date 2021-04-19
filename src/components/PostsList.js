@@ -28,7 +28,7 @@ const PostsList = () => {
 const StyledPostsList = styled.div`
   padding: 2rem;
   border-radius: 2rem;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); */
   min-height: 80vh;
 `;
 export default PostsList;
