@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { PostsContext } from 'context/PostsContext';
 const Search = () => {
-  const { state } = useContext(PostsContext);
+  const { state, setState } = useContext(PostsContext);
   console.log(state);
-
   const searchHandler = (e) => {
     console.log(e.target.value);
+    const filteredPosts = state.postsWithUsers.filter(
+      (p) =>
+        p.author.toLowerCase().includes(e.target.value.toLowerCase()) === true
+    );
+    setState({ ...state, filteredPosts });
   };
   return (
     <StyledSearch>
