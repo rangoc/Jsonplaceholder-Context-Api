@@ -5,7 +5,7 @@ const Search = () => {
   const { state, setState } = useContext(PostsContext);
   console.log(state);
   const searchHandler = (e) => {
-    const filteredPosts = state.postsWithUsers.filter(
+    const filteredPosts = state.posts.filter(
       (p) =>
         p.author.toLowerCase().includes(e.target.value.toLowerCase()) === true
     );

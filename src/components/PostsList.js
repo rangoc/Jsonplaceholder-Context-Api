@@ -4,16 +4,18 @@ import { useFetchPosts, PostsContext } from 'context/PostsContext';
 import CommentsContextProvider from 'context/CommentsContext';
 import styled from 'styled-components';
 const PostsList = () => {
-  const { isLoading, posts, users } = useFetchPosts();
-  const { state } = useContext(PostsContext);
-
+  const { isLoading, posts } = useFetchPosts();
+  const {
+    state: { isSearchActive, filteredPosts },
+  } = useContext(PostsContext);
+  const data = isSearchActive ? filteredPosts : posts;
   return (
     <StyledPostsList>
       {isLoading
         ? 'Loading'
-        : posts.map((post) => (
+        : data.map((post) => (
             <CommentsContextProvider key={post.id}>
-              <Post post={post} users={users} />
+              <Post post={post} />
             </CommentsContextProvider>
           ))}
     </StyledPostsList>

@@ -12,7 +12,6 @@ const PostsContextProvider = ({ children }) => {
     isSearchActive: false,
     searchInput: '',
     filteredPosts: null,
-    postsWithUsers: [],
   });
 
   return (
@@ -43,16 +42,25 @@ export const useFetchPosts = () => {
         'https://jsonplaceholder.typicode.com/users'
       );
       const users = await usersResponse.json();
+
+      const makeNewArray = () => {
+        const postsAndUsers = [];
+        const newPosts = posts.map((post) => {
+          const author = users.filter((user) => user.id === post.userId);
+          postsAndUsers.push({ author: author[0].name, ...post });
+          return postsAndUsers;
+        });
+        return newPosts[newPosts.length - 1];
+      };
       setState({
         isLoading: false,
         isUpdating: false,
         error: null,
-        posts,
+        posts: makeNewArray(),
         users,
         isSearchActive: false,
         searchInput: '',
         filteredPosts: null,
-        postsWithUsers: [],
       });
     } catch (e) {
       setState({
@@ -64,7 +72,6 @@ export const useFetchPosts = () => {
         isSearchActive: false,
         searchInput: '',
         filteredPosts: null,
-        postsWithUsers: [],
       });
     }
   };
