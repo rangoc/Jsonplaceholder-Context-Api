@@ -2,13 +2,20 @@ import React from 'react';
 // Components
 import PostsList from 'components/PostsList';
 import Search from 'components/Search';
+// styles
+import styled from 'styled-components';
 const Posts = () => {
   return (
-    <div>
+    <StyledPosts>
       <Search />
       <PostsList />
-    </div>
+    </StyledPosts>
   );
 };
-
+const StyledPosts = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+`;
 export default Posts;

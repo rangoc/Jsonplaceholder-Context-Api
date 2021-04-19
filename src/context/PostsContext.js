@@ -6,7 +6,6 @@ const PostsContextProvider = ({ children }) => {
   const [state, setState] = useState({
     isLoading: true,
     posts: null,
-    users: null,
     error: null,
     isUpdating: false,
     isSearchActive: false,
@@ -57,7 +56,6 @@ export const useFetchPosts = () => {
         isUpdating: false,
         error: null,
         posts: makeNewArray(),
-        users,
         isSearchActive: false,
         searchInput: '',
         filteredPosts: null,
@@ -68,7 +66,6 @@ export const useFetchPosts = () => {
         isUpdating: false,
         error: e,
         posts: null,
-        users: null,
         isSearchActive: false,
         searchInput: '',
         filteredPosts: null,
