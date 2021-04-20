@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useFetchComments } from 'context/CommentsContext';
 import Comment from 'components/Comment';
@@ -17,6 +18,11 @@ const CommentsList = ({ postId }) => {
     </StyledCommentsList>
   );
 };
+
+CommentsList.propTypes = {
+  postId: PropTypes.number.isRequired,
+};
+
 const StyledCommentsList = styled.div`
   padding: 2rem 3rem;
   display: flex;

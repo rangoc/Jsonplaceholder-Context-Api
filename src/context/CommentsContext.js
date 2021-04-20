@@ -21,6 +21,7 @@ export const useFetchComments = (postId) => {
   const { state, setState } = useContext(CommentsContext);
   useEffect(() => {
     fetchComments(postId);
+    //eslint-disable-next-line
   }, []);
   const fetchComments = async (postId) => {
     setState((prev) => {

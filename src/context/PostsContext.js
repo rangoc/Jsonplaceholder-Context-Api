@@ -25,6 +25,7 @@ export const useFetchPosts = () => {
   const { state, setState } = useContext(PostsContext);
   useEffect(() => {
     fetchPosts();
+    //eslint-disable-next-line
   }, []);
   const fetchPosts = async () => {
     setState((prev) => {
@@ -79,6 +80,7 @@ export const useFetchPost = (postId) => {
   const { state, setState } = useContext(PostsContext);
   useEffect(() => {
     fetchPost(postId);
+    //eslint-disable-next-line
   }, []);
   const fetchPost = async (postId) => {
     setState((prev) => {

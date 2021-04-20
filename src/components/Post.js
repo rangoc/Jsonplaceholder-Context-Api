@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CommentsList from 'components/CommentsList';
 
@@ -23,6 +24,10 @@ const Post = ({ post }) => {
       <div className="line" />
     </StyledPost>
   );
+};
+
+Post.propTypes = {
+  post: PropTypes.object,
 };
 
 const StyledPost = styled.div`
@@ -53,4 +58,5 @@ const StyledPost = styled.div`
     background-color: rgba(0, 0, 0, 0.1);
   }
 `;
+
 export default Post;
