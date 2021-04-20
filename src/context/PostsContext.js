@@ -93,15 +93,14 @@ export const useFetchPost = (postId) => {
         `https://jsonplaceholder.typicode.com/posts/${postId}`
       );
       const post = await postResponse.json();
-      console.log(`post: ${post}`);
+
       // getting the userId from the post and fetching that user
       const userId = post.userId;
-      console.log(`userId: ${userId}`);
+
       const userResponse = await fetch(
         `https://jsonplaceholder.typicode.com/users/${userId}`
       );
       const user = await userResponse.json();
-      console.log(`user: ${user}`);
 
       const makeNewPost = () => {
         const postAndUser = { author: user.name, ...post };

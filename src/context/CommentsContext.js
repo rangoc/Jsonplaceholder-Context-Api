@@ -24,7 +24,7 @@ export const useFetchComments = (postId) => {
   }, []);
   const fetchComments = async (postId) => {
     setState((prev) => {
-      if (prev.data) {
+      if (prev.comments) {
         return { ...prev, isUpdating: true }; // updating
       }
       return { ...prev, isLoading: true }; // fetching for a first time

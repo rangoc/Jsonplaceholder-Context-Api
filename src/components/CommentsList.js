@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFetchComments } from 'context/CommentsContext';
 import Comment from 'components/Comment';
-import Loader from './Loader';
+import Loader from 'components/Loader';
 const CommentsList = ({ postId }) => {
   const { isLoading, comments } = useFetchComments(postId);
   return (

@@ -8,8 +8,6 @@ import styled from 'styled-components';
 const PostDetails = () => {
   const { id } = useParams();
   const { isLoading, selectedPost } = useFetchPost(id);
-  console.log(selectedPost);
-  console.log(isLoading);
   return (
     <StyledPostDetails>
       {isLoading ? <Loader /> : <Post post={selectedPost} />}
