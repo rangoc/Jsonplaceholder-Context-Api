@@ -33,7 +33,7 @@ const Search = () => {
           <input
             type="text"
             value={state.searchInput}
-            placeholder="Search posts..."
+            placeholder="Search by author's name"
             onChange={searchHandler}
           />
         </StyledSearch>
